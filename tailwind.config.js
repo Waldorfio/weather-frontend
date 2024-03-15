@@ -26,7 +26,7 @@ module.exports = {
       },
       animation: {
         'slide-right': 'slideRight 0.5s ease-out',
-        'fade-in': 'fadeIn 0.5s ease-out'
+        'fade-in': 'fadeIn 0.75s ease-out'
       },
     },
   },

@@ -13,6 +13,7 @@ function App() {
   const [error, setError] = useState(null);
   const [celsius, setCeslsius] = useState(false);
   console.log('weatherData', weatherData)
+  console.log('celsisus', celsius)
   const [modalOpen, setModalOpen] = useState(false);
 
   const fetchWeather = async () => {
@@ -31,8 +32,6 @@ function App() {
     } catch (error) {
       setWeatherData(null);
       setError('Error fetching weather data');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -61,10 +60,15 @@ function App() {
     }
   }, [weatherData]);
 
+  // If temp unit changes, refetch weather
+  useEffect(() => {
+    fetchWeather()
+  }, [celsius])
+
   return (
     <div className="flex flex-col gap-[15px]">
       <SettingsButton setModalOpen={setModalOpen} />
-      <h1 className="text-2xl font-semibold mb-4 self-center">
+      <h1 className="text-2xl font-semibold mb-4 self-center animate-fade-in">
         Weather App
       </h1>
       <SearchBar
@@ -74,7 +78,7 @@ function App() {
       />
       {(!loading && gifData && weatherData) && (
         <div className="flex flex-col gap-[10px] bg-white p-8 rounded-[5px] shadow-md w-96 animate-fade-in">
-          <WeatherData data={weatherData} />
+          <WeatherData data={weatherData} celsius={celsius} />
           <GiphyImage gifData={gifData} />
         </div>
       )}

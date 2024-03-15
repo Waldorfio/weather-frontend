@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-const WeatherData = ({ data }) => {
+const WeatherData = ({ data, celsius }) => {
   return (
     <div className="flex flex-col gap-[12px]">
       <p className="flex justify-between">
@@ -17,6 +17,7 @@ const WeatherData = ({ data }) => {
       <p className="">
         <span className="text-[#2c2c2c] mr-[10px] text-[32px] font-[600]">{data?.DailyForecasts[0].Temperature?.Maximum?.Value}°</span>
         <span className="text-[#808080]">{data?.DailyForecasts[0].Temperature?.Minimum?.Value}°</span>
+        <span className="text-[#808080] text-[14px]">{celsius ? 'C' : 'F'}</span>
       </p>
       <p>{data?.DailyForecasts[0].Day?.IconPhrase} during the day, and then {data?.DailyForecasts[0].Night?.IconPhrase.toLowerCase()} during the night.</p>
     </div>
