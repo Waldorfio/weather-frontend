@@ -1,30 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { SearchBar } from './components/SearchBar'
-import { ResultsContainer} from './components/ResultsContainer'
+import { GiphyImage, WeatherData } from './components/Results'
+import { SkeletonTable } from './components/Skeletons'
 
 function App() {
   const [query, setQuery] = useState('');
   const [weatherData, setWeatherData] = useState(null);
-  console.log('weatherData', weatherData)
   const [gifData, setGifData] = useState(null);
-  console.log('gifData', gifData)
   const [loading, setLoading] = useState(false);
-  console.log('loading', loading)
   const [error, setError] = useState(null);
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleSearch = () => {
-    setIsOpen(!isOpen);
-  };
 
   const fetchWeather = async () => {
     if (!query) {
       setError('Please enter a location.');
       return;
     }
-
     try {
       setLoading(true);
       const response = await axios.post('http://localhost:3000/api/weather', {
@@ -70,17 +61,24 @@ function App() {
   }, [weatherData])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-8 rounded shadow-md w-96">
+    <div className="flex flex-col gap-[15px]">
+      <h1 className="text-2xl font-semibold mb-4 self-center">
+        Weather App
+      </h1>
       <SearchBar
         query={query}
         setQuery={setQuery}
         fetchWeather={fetchWeather}
       />
-      <ResultsContainer
-        gifData={gifData}
-        error={error}
-        weatherData={weatherData}
-      />
+      {(!loading && gifData && weatherData) && (
+        <div className="flex flex-col gap-[10px] bg-white p-8 rounded shadow-md w-96">
+          <GiphyImage gifData={gifData} />
+          <WeatherData data={weatherData} />
+        </div>
+      )}
+      {(loading) && (
+        <SkeletonTable />
+      )}
     </div>
   );
 }
