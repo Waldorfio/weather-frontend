@@ -23,7 +23,7 @@ function App() {
     if (!query) return // prevent query from running on initial React renders, saving queries
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:3000/api/weather', {
+      const response = await axios.post('https://weather-api-production-c823.up.railway.app/api/weather', {
         city: query,
         extended: extended,
         celsius: celsius
@@ -46,7 +46,7 @@ function App() {
     }
     try {
       setLoading(true);
-      const response = await axios.post('http://localhost:3000/api/giphy', {
+      const response = await axios.post('https://weather-api-production-c823.up.railway.app/api/giphy', {
         query: condition
       });
       setGifData(response.data.gif.data[0]);
