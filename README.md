@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Weather App Coding Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This project is a weather application with both front and back end components. Below are some areas where improvements could be made if additional time were available.
 
-In the project directory, you can run:
+## Opportunities for Improvement
 
-### `npm start`
+1. **Server-Side API Protection:**
+   - Currently, there is no barrier to protecting the server-side API routes. Implementing a server-side code within the frontend or a login system could protect API routes from unauthorized access.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Autocomplete Search Bars:**
+   - Due to limitations with the AccuWeather API, autocomplete search bars weren't implemented as they consume a significant portion of the API requests. With unlimited requests, implementing autocomplete search bars or storing geolocations/keys in a database for efficient querying could improve application flow.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. **Enhanced Forecast Features:**
+   - Although daily and hourly forecasts were implemented, additional features like social sharing or extended 7-day forecasts were not included due to time constraints. Implementing these features would enrich the user experience.
 
-### `npm test`
+4. **User Preferences Modal:**
+   - A user preferences modal was created with the intention of storing additional settings such as dark mode. Given more time, this feature could be further developed and integrated into the application.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. **Improved Error Handling:**
+   - With more time, errors and warnings could be displayed more effectively, for example, through the implementation of a toast or snackbar system. This would enhance user feedback and experience.
 
-### `npm run build`
+6. **Additional Unit Control:**
+   - Currently, the application supports switching between imperial and metric units for certain parameters like temperature. Expanding this feature to include other parameters such as wind speed would provide users with more customization options.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+7. **Mobile Optimization:**
+   - Given more time, the application's design could be optimized for better viewing and usability on mobile devices. This would ensure a seamless experience across different screen sizes.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Conclusion
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+These are some areas where the weather application could be enhanced with additional development time. Each improvement has the potential to make the application more robust, user-friendly, and feature-rich.
