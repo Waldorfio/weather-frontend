@@ -32,14 +32,6 @@ const SearchSettings = ({ extended, setExtended }) => {
       {(!current) && (
         <div className="animate-slide-right flex gap-[15px]">
           <button
-            className={`py-2 px-4 rounded-md transition-all duration-150 ${extended === 'hourly'
-              ? 'bg-orange-500 hover:bg-orange-600 text-white hover:text-gray-50'
-              : 'bg-gray-300 hover:bg-gray-400 text-gray-800 hover:text-gray-700'}`}
-            onClick={() => {setExtended('hourly')}}
-          >
-            Hourly
-          </button>
-          <button
             className={`py-2 px-4 rounded-md transition-all duration-150 ${extended === 'daily'
               ? 'bg-orange-500 hover:bg-orange-600 text-white hover:text-gray-50'
               : 'bg-gray-300 hover:bg-gray-400 text-gray-800 hover:text-gray-700'}`}

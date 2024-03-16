@@ -9,6 +9,8 @@ import { ErrorMessage, WarningMessage } from './components/Messages';
 function App() {
   const [query, setQuery] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('');
   const [gifData, setGifData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,22 +18,24 @@ function App() {
   const [celsius, setCeslsius] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [extended, setExtended] = useState('');
-  console.log('extended', extended)
 
   const fetchWeather = async () => {
     if (!query) return // prevent query from running on initial React renders, saving queries
-    console.log('WEATHER RUN!')
     try {
       setLoading(true);
       const response = await axios.post('http://localhost:3000/api/weather', {
         city: query,
-        extended: extended
+        extended: extended,
+        celsius: celsius
       });
       setWeatherData(response.data.weather);
+      setCity(response.data.city);
+      setCountry(response.data.country);
       setError(null);
     } catch (error) {
-      setWeatherData([]);
-      setError(`Error fetching Weather: ${error.response.statusText}`);
+      setWeatherData(null);
+      setError(`Error fetching Weather: ${error.response.statusText.includes('Internal') ? 'Location could not be found.' : error.response.statusText}`);
+      setLoading(false)
     }
   };
 
@@ -40,7 +44,6 @@ function App() {
       setError('Could not find a Gif for the given weather.');
       return;
     }
-    console.log('GIF RUN!')
     try {
       setLoading(true);
       const response = await axios.post('http://localhost:3000/api/giphy', {
@@ -56,19 +59,26 @@ function App() {
     }
   };
 
+  // refetch weather data if change in extended status
   useEffect(() => {
-    if (weatherData?.Headline?.Category) {
-      fetchGif(`funny ${weatherData.Headline.Category}`);
+    fetchWeather()
+  }, [extended])
+
+  // refetch weather for extended view, if prefs change
+  useEffect(() => {
+    if (extended.length > 0) { fetchWeather() }
+  }, [celsius])
+
+  useEffect(() => {
+    if (extended.length > 0 && weatherData) {
+      fetchGif(`weather ${weatherData.Headline.Text}`);
+    } else if (extended.length === 0 && weatherData) {
+      fetchGif(`weather ${weatherData.WeatherText}`);
     }
   }, [weatherData]);
 
-  // If temp unit changes, refetch weather
-  useEffect(() => {
-    fetchWeather()
-  }, [celsius])
-
   return (
-    <div className="flex flex-col gap-[15px]">
+    <div className="flex flex-col gap-[15px] items-center">
       <SettingsButton setModalOpen={setModalOpen} />
       <h1 className="text-2xl font-semibold mb-4 self-center animate-fade-in">
         Weather App
@@ -84,11 +94,18 @@ function App() {
       />
       {(!loading && weatherData) && (
         <div className="flex flex-col gap-[10px] bg-white p-8 rounded-[5px] shadow-md w-96 animate-fade-in">
-          <WeatherData data={weatherData} celsius={celsius} />
+          <WeatherData
+            data={weatherData}
+            city={city}
+            country={country}
+            celsius={celsius}
+            extended={extended}
+          />
           <GiphyImage gifData={gifData} />
-          {error && <ErrorMessage msg={error} />}
-          {warning && <WarningMessage msg={warning} />}
         </div>
+      )}
+      {(!weatherData && error) && (
+        <ErrorMessage msg={error} />
       )}
       {(loading) && (
         <SkeletonTable />
