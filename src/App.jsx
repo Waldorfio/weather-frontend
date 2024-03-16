@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { SearchBar } from './components/SearchBar';
+import { SearchBar, SearchSettings } from './components/SearchBar';
 import { GiphyImage, WeatherData } from './components/Results';
 import { SkeletonTable } from './components/Skeletons';
 import { UserPreferences, SettingsButton } from './components/Preferences';
@@ -71,6 +71,7 @@ function App() {
       <h1 className="text-2xl font-semibold mb-4 self-center animate-fade-in">
         Weather App
       </h1>
+      <SearchSettings />
       <SearchBar
         query={query}
         setQuery={setQuery}
