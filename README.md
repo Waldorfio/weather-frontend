@@ -1,6 +1,6 @@
 # Weather App Coding Test
 
-URL: https://weather-frontend-kgn2p24n5-waldorfio.vercel.app/
+[Live Link](https://weather-frontend-pi.vercel.app/)
 
 ## Project Overview
 
