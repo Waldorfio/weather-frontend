@@ -34,7 +34,7 @@ function App() {
       setError(null);
     } catch (error) {
       setWeatherData(null);
-      setError(`Error fetching Weather: ${error.response.statusText.includes('Internal') ? 'Location could not be found.' : error.response.statusText}`);
+      setError(`Error fetching Weather: ${error.response.statusText.includes('Internal') ? 'Location could not be found.' : error.response.data.error.statusText}`);
       setLoading(false)
     }
   };
