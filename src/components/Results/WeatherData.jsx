@@ -10,7 +10,7 @@ const WeatherData = ({ data, celsius }) => {
           alt={data?.DailyForecasts[0].Day?.IconPhrase}
         />
         <span className="flex flex-row justify-end items-baseline">
-          <span className="text-[14px] font-[200] italic">Brisbane,&nbsp;</span>
+          <span className="text-[16px] font-[400] italic">Brisbane,&nbsp;</span>
           <span className="text-[25px] font-[500]">Australia</span>
         </span>
       </p>

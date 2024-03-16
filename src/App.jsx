@@ -15,6 +15,8 @@ function App() {
   const [warning, setWarning] = useState(null);
   const [celsius, setCeslsius] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [extended, setExtended] = useState('');
+  console.log('extended', extended)
 
   const fetchWeather = async () => {
     if (!query) return // prevent query from running on initial React renders, saving queries
@@ -23,7 +25,7 @@ function App() {
       setLoading(true);
       const response = await axios.post('http://localhost:3000/api/weather', {
         city: query,
-        extended: 'daily'
+        extended: extended
       });
       setWeatherData(response.data.weather);
       setError(null);
@@ -71,7 +73,10 @@ function App() {
       <h1 className="text-2xl font-semibold mb-4 self-center animate-fade-in">
         Weather App
       </h1>
-      <SearchSettings />
+      <SearchSettings
+        extended={extended}
+        setExtended={setExtended}
+      />
       <SearchBar
         query={query}
         setQuery={setQuery}
